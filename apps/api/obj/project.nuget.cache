@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "2UIu9PPEY/4=",
+  "success": true,
+  "projectFilePath": "/home/herbert/Documentos/Herbert/Programación/Fullstack projects/novakart/apps/api/api.csproj",
+  "expectedPackageFiles": [
+    "/home/herbert/.nuget/packages/microsoft.aspnetcore.openapi/10.0.7/microsoft.aspnetcore.openapi.10.0.7.nupkg.sha512",
+    "/home/herbert/.nuget/packages/microsoft.openapi/2.0.0/microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio para el origen https://api.nuget.org/v3/index.json.",
+      "projectPath": "/home/herbert/Documentos/Herbert/Programación/Fullstack projects/novakart/apps/api/api.csproj",
+      "warningLevel": 1,
+      "filePath": "/home/herbert/Documentos/Herbert/Programación/Fullstack projects/novakart/apps/api/api.csproj",
+      "targetGraphs": []
+    }
+  ]
+}

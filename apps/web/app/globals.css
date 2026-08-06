@@ -8,6 +8,10 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+
+  html {
+    color-scheme: dark;
+  }
 }
 
 html,
@@ -30,21 +34,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-.imgDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
 }

@@ -4,6 +4,7 @@ import { Geist } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { cn } from "@/lib/utils";
 import { routing } from "@/i18n/routing";
 import { AuthSessionProvider } from "@/providers/session-provider";
@@ -36,9 +37,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={cn("font-sans", geist.variable)}>
       <body>
-        <NextIntlClientProvider>
-          <AuthSessionProvider>{children}</AuthSessionProvider>
-        </NextIntlClientProvider>
+        <NuqsAdapter>
+          <NextIntlClientProvider>
+            <AuthSessionProvider>{children}</AuthSessionProvider>
+          </NextIntlClientProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

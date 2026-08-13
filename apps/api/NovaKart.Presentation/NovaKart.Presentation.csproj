@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NovaKart.Application\NovaKart.Application.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "dotnet run --project NovaKart.Presentation",
+    "dev": "dotnet run --project NovaKart.WebApi",
     "build": "dotnet build NovaKart.slnx",
     "clean": "dotnet clean NovaKart.slnx"
   }

@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="NovaKart.Presentation/NovaKart.Presentation.csproj" />
+  <Project Path="NovaKart.WebApi/NovaKart.WebApi.csproj" />
   <Project Path="NovaKart.Application/NovaKart.Application.csproj" />
   <Project Path="NovaKart.Domain/NovaKart.Domain.csproj" />
   <Project Path="NovaKart.Infraestructure/NovaKart.Infraestructure.csproj" />

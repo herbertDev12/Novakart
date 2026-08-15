@@ -1,8 +1,20 @@
+using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
+using NovaKart.Infraestructure;
+
+Env.TraversePath().Load();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+    ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 

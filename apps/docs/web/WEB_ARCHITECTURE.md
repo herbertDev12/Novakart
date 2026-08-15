@@ -108,7 +108,7 @@ Internal packages are referenced with the workspace protocol and namespaced:
 // apps/web/package.json
 {
   "dependencies": {
-    "@repo/ui": "workspace:*"
+    "@repo/components": "workspace:*"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -135,12 +135,12 @@ The app **transpiles** the shared UI package rather than consuming a prebuilt bu
 ```ts
 // apps/web/next.config.ts
 const nextConfig: NextConfig = {
-  transpilePackages: ["@repo/ui"],
+  transpilePackages: ["@repo/components"],
   output: "standalone",
 }
 ```
 
-This keeps the design system as plain TypeScript source — no build step in `packages/ui`, no stale dist, and Server/Client Component directives survive intact into the app's compilation.
+This keeps the design system as plain TypeScript source — no build step in `packages/components`, no stale dist, and Server/Client Component directives survive intact into the app's compilation.
 
 ---
 
@@ -269,7 +269,7 @@ Rules:
 
 - **Never add a wrapper folder** (`modules/products/module/...`). If you feel the urge to nest a module inside itself, stop — that structure carries no information and every future reader pays for it.
 - Create `hooks/`, `constants/`, or `utils/` **only when they have content**. Do not scaffold empty folders with `.gitkeep`.
-- A module may import from `lib/`, `components/`, `config/`, `routes/`, and `@repo/ui`.
+- A module may import from `lib/`, `components/`, `config/`, `routes/`, and `@repo/components`.
 - **A module must not import from another module's internals.** If `checkout` needs something from `cart`, that thing is exported from `modules/cart/index.ts` (a deliberate, small public surface) or it belongs in `lib/`.
 
 ---
@@ -1179,7 +1179,7 @@ const columns: ColumnDef<Product>[] = [
 
 ### What goes where
 
-| Belongs in `packages/ui` | Belongs in `apps/web` |
+| Belongs in `packages/components` | Belongs in `apps/web` |
 |---|---|
 | Primitives (button, input, dialog, table, sheet, badge…) | Layout composition (header, sidebar, footer) |
 | RHF-bound fields (`RHFInput`, `RHFCombobox`, `RHFMoneyInput`…) | Domain components (`ProductCard`, `CartLineItem`, `OrderTimeline`) |
@@ -1194,32 +1194,32 @@ const columns: ColumnDef<Product>[] = [
 The UI package is the single place third-party UI dependencies are declared, and it re-exports the slice the apps may use:
 
 ```ts
-// packages/ui/src/lib/dates.ts
+// packages/components/src/lib/dates.ts
 export { format, addDays, differenceInDays, type DateRange } from "date-fns"
 ```
 
-Apps import `@repo/ui/lib/dates`, never `date-fns` directly. This gives you one upgrade point, one place to enforce consistent options, and prevents four apps from pinning three different versions.
+Apps import `@repo/components/lib/dates`, never `date-fns` directly. This gives you one upgrade point, one place to enforce consistent options, and prevents four apps from pinning three different versions.
 
 ### shadcn/ui configuration
 
 ```jsonc
 // apps/web/components.json
 {
-  "style": "new-york",
+  "style": "base-nova",
   "rsc": true,
   "tsx": true,
-  "tailwind": { "css": "../../packages/ui/src/styles/globals.css", "baseColor": "neutral", "cssVariables": true },
+  "tailwind": { "css": "src/app/[locale]/globals.css", "baseColor": "neutral", "cssVariables": true },
   "aliases": {
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "utils": "@repo/ui/lib/utils",
-    "ui": "@repo/ui/components"
+    "utils": "@repo/components/lib/utils",
+    "ui": "@repo/components/ui"
   }
 }
 ```
 
-The `ui` alias points at the shared package, so `shadcn add <component>` writes into `packages/ui`, not into the app. **Never copy a primitive into an app to tweak it** — extend it in the package with a variant, or the two copies will drift.
+The `ui` alias points at the shared package, so `shadcn add <component>` writes into `packages/components`, not into the app. **Never copy a primitive into an app to tweak it** — extend it in the package with a variant, or the two copies will drift.
 
 ### Shared components that need strings
 
@@ -1490,7 +1490,7 @@ Minimum bar for any PR touching money, cart, or checkout: unit tests for the cal
 ```ts
 // next.config.ts
 const nextConfig: NextConfig = {
-  transpilePackages: ["@repo/ui"],
+  transpilePackages: ["@repo/components"],
   output: "standalone",           // minimal server bundle for containers
 }
 ```

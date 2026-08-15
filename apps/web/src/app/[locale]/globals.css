@@ -5,7 +5,7 @@
 /* Tailwind's automatic source detection skips node_modules, and @repo/components
    resolves there through the pnpm workspace symlink. Without this, the utility
    classes used inside the shared component library are never generated. */
-@source "../../../../packages/components/src";
+@source "../../../../../packages/components/src";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -2,6 +2,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ["@repo/components"],
+  output: "standalone",
   images: {
     remotePatterns: [
       // Placeholder product imagery until the API serves real assets.

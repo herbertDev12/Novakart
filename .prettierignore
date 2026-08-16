@@ -1,0 +1,11 @@
+# packages/components was scaffolded via the shadcn CLI across many separate
+# `shadcn add <component>` runs, each snapshotting the registry's own
+# formatting at the time (no semicolons, inconsistent line width). It was
+# never run through a single uniform formatter, so it doesn't match Prettier's
+# defaults and doesn't match any one custom config either — verified by
+# testing overrides for semi/printWidth, neither reconciles it cleanly.
+#
+# Excluding it here is a deliberate choice, not an oversight: reformatting it
+# would rewrite ~50 working files for a purely cosmetic reason nobody asked
+# for. If this package gets hand-edited regularly in the future, revisit this.
+packages/components/

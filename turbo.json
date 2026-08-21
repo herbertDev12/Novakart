@@ -14,6 +14,7 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "check-messages": {},
     "dev": {
       "cache": false,
       "persistent": true

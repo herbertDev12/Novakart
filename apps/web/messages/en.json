@@ -1,1 +1,12 @@
-{}
+{
+  "common": {},
+  "navigation": {},
+  "errors": {
+    "api": {
+      "UNKNOWN_ERROR": "Something went wrong. Please try again.",
+      "NETWORK_ERROR": "Could not connect. Check your internet connection."
+    }
+  },
+  "validation": {},
+  "seo": {}
+}
